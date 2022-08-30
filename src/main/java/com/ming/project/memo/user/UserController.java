@@ -12,4 +12,9 @@ public class UserController {
 	public String signupView() {
 		return "user/signup";
 	}
+	
+	@GetMapping("/signin/view")
+	public String signinView() {
+		return "user/signin";
+	}
 }

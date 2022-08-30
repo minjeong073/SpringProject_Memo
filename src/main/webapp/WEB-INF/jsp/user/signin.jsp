@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <!-- jstl core library -->    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>signup</title>
+<title>로그인 화면</title>
 
 <!-- bootstrap jquery -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -23,26 +23,26 @@
 <body>
 
 	<div class="container">
-	
+		
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class="contents d-flex justify-content-center">
-			<div class="join-box my-5">
-			
-				<h2 class="text-center">회원가입</h2>
-				<input type="text" placeholder="아이디" class="form-control mt-3"/>
-				<input type="password" placeholder="비밀번호" class="form-control mt-3">
-				<input type="password" placeholder="비밀번호 확인" class="form-control mt-3">
-				<input type="text" placeholder="이름" class="form-control mt-3">
-				<input type="text" placeholder="이메일" class="form-control mt-3">
+			<div class="join-box my-5 d-flex align-items-center">
 				
-				<button type="button" class="btn btn-secondary btn-block mt-3">가입</button>
+				<div>
+					<input type="text" placeholder="아이디" class="form-control mt-3">
+					<input type="password" placeholder="비밀번호" class="form-control mt-3">
+					
+					<button type="button" class="btn btn-secondary btn-block mt-3">로그인</button>
+					
+					<a href="/user/signup/view">회원가입</a>
+				</div>
+				
 			</div>
 		</section>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
-	
 </body>
 </html>
