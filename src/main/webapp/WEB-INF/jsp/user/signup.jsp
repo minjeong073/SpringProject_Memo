@@ -105,9 +105,9 @@
 					, error:function() {
 						alert("회원가입 에러");
 					}
-				});
+				}); // ajax
 				
-			});
+			}); // joinBtn
 			
 		});
 		

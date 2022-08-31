@@ -30,12 +30,12 @@
 			<div class="join-box my-5 d-flex align-items-center">
 				
 				<div>
-					<input type="text" placeholder="아이디" class="form-control mt-3">
-					<input type="password" placeholder="비밀번호" class="form-control mt-3">
+					<input type="text" placeholder="아이디" class="form-control mt-3" id="loginIdInput">
+					<input type="password" placeholder="비밀번호" class="form-control mt-3" id="passwordInput">
 					
-					<button type="button" class="btn btn-secondary btn-block mt-3">로그인</button>
+					<button type="button" class="btn btn-secondary btn-block mt-3" id="loginBtn">로그인</button>
 					
-					<a href="/user/signup/view">회원가입</a>
+					<div class="text-center mt-3"><a href="/user/signup/view">회원가입</a></div>
 				</div>
 				
 			</div>
@@ -44,5 +44,56 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 		
 	</div>
+	
+	<script>
+		$(document).ready(function() {
+			
+			$("#loginBtn").on("click", function() {
+			
+			// 변수 값 저장
+			
+				let loginId = $("#loginIdInput").val();
+				let password = $("#passwordInput").val();
+				
+			// Validation
+				
+				if (loginId == "") {
+					alert("아이디를 입력해주세요");
+					return ;
+				}
+				
+				if (password == "") {
+					alert("비밀번호를 입력해주세요");
+					return ;
+				}
+				
+				
+				$.ajax({
+					type:"post"
+					, url:"/user/signin"
+					, data:{"loginId":loginId, "password":password}
+					, success:function(data) {
+						if (data.result == "success") {
+							location.href="/post/list/view";
+						} else {
+							alert("로그인 실패 \n 아이디 비밀번호를 확인하세요");
+						}
+					}
+					, error:function() {
+						alert("로그인 에러");
+					}
+				});
+			});
+			
+			// form tag 의 submit 은 enter 누르면 바로 입력
+			// ajax 는 enter 눌러도 반응 없음 (UX)
+			
+			// form 의 submit 기반으로 다시 구성!
+			// submit 어떻게 캐치하는지 ?
+		});
+		
+	</script>
+	
+	
 </body>
 </html>
