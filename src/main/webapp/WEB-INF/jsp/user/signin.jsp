@@ -27,15 +27,17 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class="contents d-flex justify-content-center">
-			<div class="join-box my-5 d-flex align-items-center">
+			<div class="join-box my-5 ">
 				
-				<div>
+				<form id="loginForm">
 					<input type="text" placeholder="아이디" class="form-control mt-3" id="loginIdInput">
 					<input type="password" placeholder="비밀번호" class="form-control mt-3" id="passwordInput">
 					
-					<button type="button" class="btn btn-secondary btn-block mt-3" id="loginBtn">로그인</button>
-					
-					<div class="text-center mt-3"><a href="/user/signup/view">회원가입</a></div>
+					<button type="submit" class="btn btn-secondary btn-block mt-3" id="loginBtn">로그인</button>
+				</form>
+				
+				<div class="text-center mt-3">
+					<a href="/user/signup/view">회원가입</a>
 				</div>
 				
 			</div>
@@ -48,7 +50,12 @@
 	<script>
 		$(document).ready(function() {
 			
-			$("#loginBtn").on("click", function() {
+			// $("#loginBtn").on("click", function() {
+			$("#loginForm").on("submit", function(e) {
+				
+				e.preventDefault();
+				// e : event 다루기 위한 param
+				// 고유 이벤트를 없애주고 사용자 정의대로 변경할 수 있음
 			
 			// 변수 값 저장
 			
@@ -85,11 +92,7 @@
 				});
 			});
 			
-			// form tag 의 submit 은 enter 누르면 바로 입력
-			// ajax 는 enter 눌러도 반응 없음 (UX)
 			
-			// form 의 submit 기반으로 다시 구성!
-			// submit 어떻게 캐치하는지 ?
 		});
 		
 	</script>
