@@ -53,4 +53,15 @@ public class PostController {
 		
 		return "post/detail";
 	}
+	
+	@GetMapping("/edit/view")
+	public String memoEdit(@RequestParam("id") int id
+			, Model model) {
+		
+		Post post = postBO.getPost(id);
+		
+		model.addAttribute("post", post);
+		
+		return "post/edit";
+	}
 }

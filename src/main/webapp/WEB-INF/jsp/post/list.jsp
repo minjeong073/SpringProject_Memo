@@ -29,10 +29,10 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class="d-flex justify-content-center my-5">
-			<div class="col-9">
+			<div class="col-9 my-5">
 				<h2 class="text-center">메모 리스트</h2>
 				
-				<table class="table text-center">
+				<table class="table text-center mt-3">
 					<thead>
 						<tr>
 							<th>No.</th>
@@ -46,7 +46,7 @@
 						<tr>
 							<td>${post.id }</td>
 							<td class="post"><a href="/post/detail/view?id=${post.id }">${post.subject }</a></td>
-							<td><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH-mm-ss"/></td>
+							<td><fmt:formatDate value="${post.createdAt }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 						</tr>
 					
 					</c:forEach>
