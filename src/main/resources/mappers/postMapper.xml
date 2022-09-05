@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- mybatis dtd -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ 
+<mapper namespace="com.ming.project.memo.post.dao.PostDAO"> 
+
+	<insert id="insertPost" parameterType="map">
+	
+		INSERT INTO
+			`post`
+		(
+			`userId`
+			, `subject`
+			, `contents`
+			, `createdAt`
+			, `updatedAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{title}
+			, #{content}
+			, now()
+			, now()
+		)
+	</insert>
+	
+	<select id="selectPostList" parameterType="int"
+	resultType="com.ming.project.memo.post.model.Post">
+	
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `contents`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY
+			`id` DESC
+			
+	</select>
+	
+	<select id="selectPost" parameterType="int"
+	resultType="com.ming.project.memo.post.model.Post">
+	
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `contents`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+	
+	</select>
+	
+</mapper>

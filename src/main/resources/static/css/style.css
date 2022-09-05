@@ -10,6 +10,15 @@ header {
 	width: 300px;
 }
 
+.post > a {
+	text-decoration: none;
+	color: black;
+}
+
+.post > a:hover {
+	color: gray;
+}
+
 footer {
 	height: 70px;
 	background-color: #dddddd;
