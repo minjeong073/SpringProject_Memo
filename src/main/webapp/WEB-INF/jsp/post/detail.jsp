@@ -36,6 +36,11 @@
 				
 				<div class="mt-2 col-12">${post.contents }</div>
 				
+				<div>
+					<img src="${post.imagePath }" class="mt-2">
+				</div>
+				
+				
 				<div class="d-flex justify-content-between mt-3">
 					<!-- button 으로 페이지 이동하기 번거롭기 떄문에 a tag 로 페이지 이동 -->
 					<a href="/post/list/view" class="btn btn-primary">목록으로</a>

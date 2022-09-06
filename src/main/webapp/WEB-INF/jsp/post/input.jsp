@@ -35,7 +35,7 @@
 				</div>
 				
 				<textarea class="form-control mt-2" rows="7" id="contentInput"></textarea>
-				<input type="file" class="mt-2">
+				<input type="file" class="mt-2" id="fileInput">
 				
 				<div class="d-flex justify-content-between mt-3">
 					<!-- button 으로 페이지 이동하기 번거롭기 떄문에 a tag 로 페이지 이동 -->
@@ -70,10 +70,26 @@
 					return ;
 				}
 				
+				// file 은 있을 수도 없을 수도 있기 때문에 validation X
+				
+				// file 은 formData 객체 형태로 전달
+				// -> formData 객체에 전달할 내용 담아서 data 에 전송
+				
+				var formData = new FormData();
+				formData.append("title", title);
+				formData.append("content", content);
+				// $("#fileInput")[0].files : 선택된 파일들이 보여짐 -> ~.files[0] : 하나의 파일만 추가
+				formData.append("file", $("#fileInput")[0].files[0]);
+				
+				
 				$.ajax({
 					type:"post"
 					, url:"/post/create"
-					, data:{"title":title, "content":content}
+					, data:formData
+					// 파일 업로드 필수 옵션 (enctype, processData, contentType)
+					, enctype:"multipart/form-data" // file encoding 형식
+					, processData:false	// false -> multipart file 로 변경해서 가장 기본인 param 으로 전달되지 않도록
+					, contentType:false 
 					, success:function(data) {
 						if (data.result == "success") {
 							location.href = "/post/list/view";
