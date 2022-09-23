@@ -69,7 +69,56 @@ public class FileManagerService {
 		
 		return "/images" + directoryName + file.getOriginalFilename();
 		
-		
 	}
+	
+	
+	// 파일 삭제 기능
+	// void 해도 되지만 파일 처리 과정에서 문제가 생길 수 있기 때문에 boolean 으로 리턴 값 받음
+	public static boolean removeFile(String filePath) {
+		
+		// file path : /images/2_98302347296/test.jpg
+		
+		// 삭제 경로는 /images 를 제거하고 실제 파일 저장 경로를 이어붙이기
+		// --> 실제 경로 : D:\\minjeong\\spring\\memo\\upload/images/2_98302347296/test.jpg
+		
+		
+		// + 파일 없는 게시물일 경우 nullPointerException 발생
+		if (filePath == null) {
+			return true;	// 아래 코드 수행되지 않도록 끝냄
+		}
+		
+		String realFilePath = FILE_UPLOAD_PATH + filePath.replace("/images", "");
+		
+		Path path = Paths.get(realFilePath);	// 경로 관리하는 클래스
+		
+		// 바로 삭제 할 때 문제가 생길 수 있기 때문에 우선 파일이 있는지 확인
+		if (Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		// 파일 저장되어 있던 폴더도 지워야 함
+		// 폴더 경로 : D:\\minjeong\\spring\\memo\\upload/images/2_98302347296
+		
+		// 파일이 포함된 폴더 경로 : getParent() 로 가져오기
+		path = path.getParent();
+		
+		// 폴더 존재하는지 확인
+		if (Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	
 }

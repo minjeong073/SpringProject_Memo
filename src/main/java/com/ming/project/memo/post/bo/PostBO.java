@@ -47,4 +47,23 @@ public class PostBO {
 	public Post getPost(int id) {
 		return postDAO.selectPost(id);
 	}
+	
+	// 메모 수정
+	public int updatePost(int postId, String title, String contents) {
+		return postDAO.updatePost(postId, title, contents);
+	}
+	
+	// 메모 삭제
+	public int deletePost(int postId) {
+		
+		// 이미지 경로가 저장된 post 정보 조회
+		Post post = postDAO.selectPost(postId);
+		
+		FileManagerService.removeFile(post.getImagePath());
+		// 파일이 삭제가 안될 경우 사용자에게 보여지거나 에러 발생하게 하지 않고
+		// 로그로 처리해야함 (서비스이기 때문에)
+		
+		return postDAO.deletePost(postId);
+	}
+	
 }
