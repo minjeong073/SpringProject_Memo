@@ -32,7 +32,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 		
 		registry.addInterceptor(interceptor)
 		.addPathPatterns("/**")	// intercept 할 페이지 지정해주기
-		.excludePathPatterns("/static/**", "/images/**");
+		.excludePathPatterns("/static/**", "/images/**", "/user/signout");
 	}
 	
 	
